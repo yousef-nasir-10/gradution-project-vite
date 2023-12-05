@@ -35,6 +35,6 @@ export const departments = [
 ]
 
 
-export const baseURL = "http://localhost:5173/"
+export const baseURL = "https://gradution-project-vite-yousefs-projects-7c842e2e.vercel.app/"
 
 
