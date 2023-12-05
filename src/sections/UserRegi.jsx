@@ -51,7 +51,6 @@ const UserRegi = () => {
             lastName: formData.lastName
         })
         .then(res => {
-            console.log(res.data.status);
             if (res.data.status === 200) {
                 setFormData({   
                     id: '',
@@ -92,7 +91,7 @@ const UserRegi = () => {
 
     async function handleFileSubmit(event) {
         event.preventDefault()
-        console.log(jsonData);
+
         for(let i = 0; i< jsonData.length; i++){
             if(jsonData[i].email != undefined){
                 POST("user-login/register", {
@@ -104,12 +103,12 @@ const UserRegi = () => {
                     lastName: jsonData[i].lastName
                 }).then(res => {
                     if (res.data.status === 200){
-                        console.log("s",i);
+
                         insertion.push(jsonData[i])
                         setInsertedList(insertion)
 
                     }else{
-                        console.log("f",i);
+
                         notInsertion.push(jsonData[i])
                         setNotInsrtedList(notInsertion)
 

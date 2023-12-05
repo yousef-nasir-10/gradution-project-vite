@@ -88,7 +88,7 @@ const Login = () => {
             email: loginFormData.email
         })
         .then(res => {
-            console.log(res);
+
             if (res.data.msg) {
                 setForgetPasswordMsg(`Message has been sent to ${loginFormData.email}.`)
             }else{

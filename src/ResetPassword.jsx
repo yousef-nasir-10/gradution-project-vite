@@ -9,7 +9,7 @@ import PasswordChecklist from "react-password-checklist"
 
 const ResetPassword = () => {
     const {id, token} = useParams()
-    console.log(id, token);
+    
     const [isacceptedPassword, setIsacceptedPassword] = useState(false)
 
     const [formData, setFormData] = useState(
@@ -33,7 +33,7 @@ const ResetPassword = () => {
 
         GET(`user-login/reset-password/${id}/${token}`)
         .then(res => {
-            console.log(res);
+            
             if(!res.data.msg){
                 window.location.href = "/"
 
@@ -49,9 +49,9 @@ const ResetPassword = () => {
                 password: formData.password
             })
             .then(res=>{
-                console.log(res);
+                
                 if(res.data.msg){
-                    console.log("here");
+                    
                     window.location.href = '/#login'
                 }
             })

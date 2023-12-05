@@ -15,7 +15,7 @@ const Project = ({title, numOfLikes, department, onClick, isLiked, handleLikeBut
     if(event.stopPropagation) event.stopPropagation();
       PATCH(`projects/like/${myDecodedToken.id}`)
       .then(res => {
-        console.log(res);
+
       })
     }else{
       alert("Must be signed in first, Thank you!")

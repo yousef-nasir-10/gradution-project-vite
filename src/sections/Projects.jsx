@@ -8,10 +8,9 @@ import { useParams, useSearchParams } from "react-router-dom";
 
 
 const Projects = () => {
-  console.log(myDecodedToken);
   const [toogleLike, setToogleLike] = useState(false)
 
-  console.log(myDecodedToken);
+
   const [searchParams, setSearchParams] = useSearchParams();
 	const [ search, setSearch] = useState("");
   const [ departemnt, setDepartemnt] = useState("");

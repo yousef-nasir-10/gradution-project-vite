@@ -35,8 +35,7 @@ const SingleGp = () => {
     useEffect(() => {
         GET(`projects/id/${searchParm}`)
         .then(res=>{
-            console.log(res);
-            console.log(res.data);
+
             setBackendProjects(res.data.project)
             setStudentsList(res.data.project.students)
             setToolsList(res.data.project.tools)
@@ -57,7 +56,7 @@ const SingleGp = () => {
     useEffect(() => {
       GET(`projects/comment/${searchParm}`)
       .then(res =>{
-        console.log(res.data.comments);
+
         setCommentsList(res.data.comments)
       })
 
