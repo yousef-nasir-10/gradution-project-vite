@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Button from './components/Button'
 import { useParams } from "react-router-dom";
-import { GET, POST } from './APIs';
+import { GET, POST, myDecodedToken } from './APIs';
 import PasswordChecklist from "react-password-checklist"
-
+let currentDate = new Date();
 
 
 
@@ -30,15 +30,21 @@ const ResetPassword = () => {
     }
 
     useEffect(() => {
-
-        GET(`user-login/reset-password/${id}/${token}`)
-        .then(res => {
+        if (myDecodedToken&& myDecodedToken.exp * 1000 < currentDate.getTime()) {
             
-            if(!res.data.msg){
-                window.location.href = "/"
+            GET(`user-login/reset-password/${id}/${token}`)
+            .then(res => {
+                
+                if(!res.data.msg){
+                    window.location.href = "/"
+    
+                }
+            })
+          } else {
+            window.location.href = "/"
+          }
 
-            }
-        })
+
 
     }, [])
 
