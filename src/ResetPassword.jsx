@@ -31,7 +31,9 @@ const ResetPassword = () => {
 
     useEffect(() => {
         if (myDecodedToken&& myDecodedToken.exp * 1000 < currentDate.getTime()) {
+            window.location.href = "/"
             
+        } else {
             GET(`user-login/reset-password/${id}/${token}`)
             .then(res => {
                 
@@ -40,8 +42,6 @@ const ResetPassword = () => {
     
                 }
             })
-          } else {
-            window.location.href = "/"
           }
 
 
