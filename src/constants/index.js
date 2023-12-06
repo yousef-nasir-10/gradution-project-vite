@@ -21,9 +21,7 @@ export const projects = [
 
 export const contactInfo = [
     {name: "Yousef Nasser Al Suweileh", email: "Yousef.nasir.10@hotmail.com", image : yousefPhoto},
-    {name: "Yousef Nasser Al Suweileh", email: "Yousef.nasir.10@hotmail.com", image : yousefPhoto},
-    {name: "Yousef Nasser Al Suweileh", email: "Yousef.nasir.10@hotmail.com", image : yousefPhoto},
-    {name: "Yousef Nasser Al Suweileh", email: "Yousef.nasir.10@hotmail.com", image : yousefPhoto},
+
     // {name:"Hassan Hussain Al farag", email: "219024864@student.kfu.edu.sa", image: ""}
 ]
 
