@@ -110,6 +110,19 @@ const SingleGp = () => {
         }
       }
 
+
+      const getBaseUrl =  (url) => {
+        if (url) {
+          var parts = url.split('://');
+          
+          if (parts.length > 1) {
+            return parts[0] + '://' + parts[1].split('/')[0] + '/';
+          } else {
+            return parts[0].split('/')[0] + '/';
+          }
+        }
+      };
+
     
     
 
@@ -124,10 +137,10 @@ const SingleGp = () => {
             <p className="text-white font-montserrat text-3xl text-center max-xl:text-2xl">{backendProjects.year}</p>
             <div className='flex items-center justify-between'>
                 <p className='m-2 font-montserrat text-xl text-white '>{numOfLikes}</p>
-                    {numOfLikes &&<BiSolidLike 
+                    <BiSolidLike 
                     onClick={handleLikeButtonClick}
                     className={` z-10 cursor-pointer  text-2xl mr-2 ${isLiked? "text-secondary" : "text-white"}`}
-                />}
+                />
         </div>
             
         </div>
@@ -203,7 +216,7 @@ const SingleGp = () => {
                 <div className="flex flex-col  ">
                     {urlsList.map(url => (
                         <Link to={url} className="text-md m-2 font-montserrat text-primary text-center  ">
-                            {url}
+                            {getBaseUrl(url)}
                         </Link>
                     ))}
                 </div>

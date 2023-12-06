@@ -30,7 +30,7 @@ const BestProjects = () => {
       <div className='flex flex-col justify-start gap-5'>
         <h2 className='text-4xl font-palanquin font-bold text-secondary'>CSSIT <span className='text-primary'>Top Projects</span> </h2>
         <div className='flex flex-1 max-xl:flex-col items-center justify-between'>
-          <p className='lg:max-w-lg mt-2 font-montserrat text-secondary info-text'>Collection  of done projects for all of the department of CCSIT.    </p>
+          <p className='lg:max-w-lg mt-2 font-montserrat text-secondary info-text'>Here are the TOP 3 projects based on number of likes!    </p>
         </div>
 
       </div>
