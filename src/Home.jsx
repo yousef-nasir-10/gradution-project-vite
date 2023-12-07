@@ -1,9 +1,20 @@
-import  { useRef } from 'react'
+import  { useEffect } from 'react'
 import Nav from './components/Nav'
 import {Hero, BestProjects, ContactUs, Login, Projects} from './sections/index'
 import UserRegi from './sections/UserRegi'
 import { myDecodedToken } from './APIs'
+let currentDate = new Date();
+
 const Home = () => {
+  useEffect(() => {
+    if (myDecodedToken&& myDecodedToken.exp * 1000 < currentDate.getTime()){
+      localStorage.removeItem("token")
+      window.location.reload(); 
+    }
+  
+
+  }, [])
+  
 
 
   return (
