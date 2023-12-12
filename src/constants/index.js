@@ -32,6 +32,13 @@ export const departments = [
     {dep: "CE", for: "Computer Engenering"},
 ]
 
+export function extractPdf(start, end, text){
+  
+    let indexOfFirst = text.indexOf(start);
+    let indexOfSecond = text.indexOf(end);
+    let extractedTxt = text.slice(indexOfFirst + start.length, indexOfSecond)
+    return extractedTxt
+}
 
 export const baseURL = "https://gradution-project-vite.vercel.app"
 

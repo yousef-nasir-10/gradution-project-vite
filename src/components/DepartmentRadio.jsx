@@ -2,7 +2,7 @@ import React from 'react'
 
 const DepartmentRadio = ({depatment,title, occation, value, onChange}) => {
   return (
-    <li className="w-full px-2 border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+    <li className="w-full xl:mx-2 border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
         <div className='flex  items-center ps-3'>
             <input
                 id={title}

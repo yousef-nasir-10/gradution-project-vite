@@ -1,23 +1,20 @@
-import { departments } from '../constants'
+import { departments, extractPdf } from '../constants'
 import Project from '../components/Project'
 import Button from '../components/Button'
 import DepartmentRadio from '../components/DepartmentRadio'
-import { GET, PATCH, POST, myDecodedToken } from '../APIs'
-import { useEffect, useState } from 'react'
+import { GET, PATCH, POST, apiBaseURL, myDecodedToken } from '../APIs'
+import { createRef, useEffect, useState } from 'react'
 import { useParams, useSearchParams } from "react-router-dom";
-
 
 const Projects = () => {
   const [toogleLike, setToogleLike] = useState(false)
-
-
   const [searchParams, setSearchParams] = useSearchParams();
 	const [ search, setSearch] = useState("");
   const [ departemnt, setDepartemnt] = useState("");
   const [toogleUpdate, setToggoleUpdate] = useState(false)
   const [toggoleCreate, setToggoleCReate] = useState(false)
   const [backendProjects, setBackendProjects] = useState([])
-  
+
   const [formData, setFormData] = useState(
     {   
       title: '',
@@ -96,6 +93,82 @@ const Projects = () => {
     })
   }
 
+  
+  const fileInput = createRef()
+  async function onFileSubmit(event){
+    event.preventDefault()
+    try {
+      const formData = new FormData()
+      formData.set("pdfPoject", fileInput.current.files[0] )
+      const response =await fetch(`${apiBaseURL}/files`, {
+            method: 'POST',
+            body: formData
+        })
+      const responseJson = await response.json()
+      console.log(responseJson);
+      const text = await responseJson.data.toLowerCase()
+
+    const title = extractPdf("technology", "a project submitted", text )
+
+
+    //extract students
+    const students = extractPdf("by", "supervised by", text )
+    let studentArray = students.split("\n")
+     console.log(students);
+    let studentsList = studentArray.filter(function (el) {
+      return el != "";
+    });
+    studentsList = studentsList.toString()
+
+
+    // extract SuperVisors
+    let superVisors = extractPdf("supervised by", "date:", text )
+    superVisors = superVisors.replace('committee members','');
+    let superVisorsArray = superVisors.split("\n")
+    // console.log(superVisorsArray);
+    let superVisorsList = superVisorsArray.filter(function (el) {
+      return el != " ";
+    });
+    superVisorsList = superVisorsList.toString()
+
+    // extract abstract 
+
+    let abstract  = extractPdf("abstract", "innovation and utility of the project", text)
+
+
+    // extract abstract 
+
+    let conclution  = extractPdf("conclusion","#end", text)
+
+    setFormData({
+      title: title,
+      year: "",
+      supervisor: superVisorsList,
+      students: studentsList,
+      tools: "",
+      urls: "",
+      catagory: "",
+      introduction: abstract,
+      abstract: conclution
+    })
+
+    
+
+
+
+      
+    } catch (error) {
+      
+    }
+
+    
+
+
+  
+  }
+  
+
+
   useEffect(()=>{
 		let searchValue = searchParams.get('search');
 		setSearch(searchValue)
@@ -146,10 +219,10 @@ const Projects = () => {
             
             </div>
 
-            <div className='flex justify-start items-center mx-4'>
+            <div className='flex justify-start items-center max-xl:mt-4 max-xl:flex-wrap mx-4'>
               <p className='text-xl text-primary font-montserrat'>department:</p>
-              <ul className="items-center w-full xl:p-2 m-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white" >
-                <li className="w-full px-2 border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <ul className="items-center w-full xl:p-2 mt-2 xl:mx-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white flex" >
+                <li className="w-full  border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 xl:mx-2">
                     <div className='flex  items-center ps-3'>
                         <input
                             
@@ -204,6 +277,34 @@ const Projects = () => {
         }
         
           { toggoleCreate &&<form className='flex mt-10 flex-wrap flex-1 '>
+          <form class="mb-3 flex w-full background-primary rounded-md p-2 flex-col "
+            onSubmit={onFileSubmit}
+          >
+            
+                    <label
+                        for="formFile"
+                        className="mb-2 inline-block text-white font-montserrat text-xl"
+                        >Extract PDF file
+                        
+                    </label>
+                    <input
+                        className="file-input  "
+                        type='file'
+                        name='pdfPoject' 
+                        ref={fileInput} 
+                    />
+
+                    <div className='h-10 mt-4'>
+                      <Button 
+                        label="Extract"
+                        onClick={onFileSubmit}
+                      />
+                      
+        
+                    </div>
+                    
+
+          </form>  
             <input
               className=' border-2 rounded-md xl:p-4 max-xl:p-2 outline-none m-2 w-[300px] '
               placeholder='Title'
@@ -251,9 +352,9 @@ const Projects = () => {
               onChange={handleChange}
             />
 
-            <div className='flex justify-start items-center mx-4'>
+            <div className='flex justify-start items-center mx-4 flex-wrap'>
               <p className='text-xl text-primary font-montserrat'>department:</p>
-              <ul className="items-center w-full xl:p-2 m-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white" >
+              <ul className="items-center w-full xl:p-2 m-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white flex" >
                 {departments.map(department => (
                   <DepartmentRadio
                     key={department.for}
