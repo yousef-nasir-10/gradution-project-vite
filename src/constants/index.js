@@ -1,6 +1,6 @@
 // import icons
 // import images 
-import { yousefPhoto } from "../assets/images";
+import { yousefPhoto, Haider, Hassan, Sajad  } from "../assets/images";
 
 export const navLinks = [
     { href: "#home", label: "Home" },
@@ -21,6 +21,9 @@ export const projects = [
 
 export const contactInfo = [
     {name: "Yousef Nasser Al Suweileh", email: "Yousef.nasir.10@hotmail.com", image : yousefPhoto},
+    {name: "Haidar Nasser Alkhalaf", email: "bokrarrarha@gmail.com", image : Haider},
+    {name: "Hassan Hussain Alfaraj", email: "hassanalfaraj1421@gmail.com", image : Hassan},
+    {name: "Sajjad Ali  AlIbrahim", email: "dv6tns@gmail.com", image : Sajad},
 
     // {name:"Hassan Hussain Al farag", email: "219024864@student.kfu.edu.sa", image: ""}
 ]

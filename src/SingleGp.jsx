@@ -144,17 +144,6 @@ const SingleGp = () => {
         </div>
             
         </div>
-        {/*  Intro */}
-        <div className="flex flex-col  px-[200px] max-xl:px-10 py-16">
-
-            <div className=" flex justify-center items-center max-xl:flex-col max-xl:items-start  ">
-                <h1 className="text-2xl font-montserrat xl:mx-2 font-bold w-2/6 text-primary">Introduction</h1>
-                <div className="bg-secondary w-full h-6 rounded-sm "/>
-            </div>
-            <div className=" flex   text-2xl leading-[40px] text-justify mt-8 max-xl:text-xl max-xl:leading-normal ">
-                <p className="">{backendProjects.introduction}</p>
-            </div>
-        </div>
         {/*  abstract */}
         <div className="flex flex-col  px-[200px] max-xl:px-10 py-16">
 
@@ -164,6 +153,17 @@ const SingleGp = () => {
             </div>
             <div className=" flex   text-2xl leading-[40px] text-justify mt-8 max-xl:text-xl max-xl:leading-normal ">
                 <p className="">{backendProjects.abstract}</p>
+            </div>
+        </div>
+        {/*  Intro */}
+        <div className="flex flex-col  px-[200px] max-xl:px-10 py-16">
+
+            <div className=" flex justify-center items-center max-xl:flex-col max-xl:items-start  ">
+                <h1 className="text-2xl font-montserrat xl:mx-2 font-bold w-2/6 text-primary">conclusion</h1>
+                <div className="bg-secondary w-full h-6 rounded-sm "/>
+            </div>
+            <div className=" flex   text-2xl leading-[40px] text-justify mt-8 max-xl:text-xl max-xl:leading-normal ">
+                <p className="">{backendProjects.introduction}</p>
             </div>
         </div>
         {/* Project Detiles div */}
